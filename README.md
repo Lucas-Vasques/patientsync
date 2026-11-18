@@ -1,6 +1,3 @@
-Cole este conteúdo inteiro no `README.md`. Mantive apenas informações e decisões que vocês já definiram; onde a implementação ainda não existe, deixei isso explícito em vez de inventar comandos, versões ou URLs.
-
-```markdown
 # PatientSync
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
@@ -12,7 +9,7 @@ Cole este conteúdo inteiro no `README.md`. Mantive apenas informações e decis
 **Disciplina:** Desenvolvimento Web  
 **Turma / Semestre:** Turma A / 4º semestre  
 **Professor:** Felippe Pires Ferreira  
-**Status do projeto:** Fase 1 — documentação e arquitetura
+**Status do projeto:** documentação da Fase 1 organizada; início da Fase 2 pendente. Submissão/aceite da Fase 1 a confirmar na Sala Online.
 
 ---
 
@@ -34,6 +31,8 @@ Cole este conteúdo inteiro no `README.md`. Mantive apenas informações e decis
 - [14. Uso de inteligência artificial](#14-uso-de-inteligência-artificial)
 - [15. Planejamento](#15-planejamento)
 - [16. Documentação](#16-documentação)
+- [17. Como contribuir na Fase 2](#17-como-contribuir-na-fase-2)
+- [18. Critérios de conclusão da Fase 2](#18-critérios-de-conclusão-da-fase-2)
 
 ---
 
@@ -303,8 +302,9 @@ Arquivos:
 | Lucas Diógenes Landim Vasques | RA: 22553040 | Frontend, integrações externas, publicação, SAST e DAST |
 | Nicolas Veiga de Vasconcelos | RA: 22402421 | Banco de dados, API REST própria e testes |
 | Matheus — dados completos pendentes | Pendente | Backend Django e relatório |
+| @MasayoshiRen — identidade a confirmar | Pendente | Escopo a definir no grupo |
 
-A apresentação final será realizada por Lucas, Nicolas e Matheus.
+Todos os integrantes efetivos participarão da apresentação. **Confirmar antes se [@MasayoshiRen](https://github.com/MasayoshiRen) é Matheus ou outra pessoa, para evitar duplicidade na tabela.**
 
 **Professor responsável:** Felippe Pires Ferreira
 
@@ -364,7 +364,7 @@ Este projeto segue as regras de uso de inteligência artificial definidas pela d
 
 **Finalidade:** apoio pontual para esclarecimento de conceitos, revisão gramatical e de formatação, verificação de consistência e suporte operacional durante a organização dos artefatos.
 
-As decisões sobre problema, escopo, funcionalidades, casos de uso, arquitetura, modelo de dados, API, integrações, protótipos e planejamento foram discutidas e definidas pelos integrantes do projeto.
+As decisões sobre problema, escopo, funcionalidades, casos de uso, arquitetura, modelo de dados, API, integrações, protótipos e planejamento devem ser verificadas e defendidas pelos integrantes. A declaração de uso de IA deve refletir fielmente o trabalho ocorrido, conforme as restrições do professor.
 
 ---
 
@@ -430,7 +430,66 @@ Planejamento completo:
 
 ---
 
+## 17. Como contribuir na Fase 2
+
+**Entrega 02:** 09/12/2026 às 08h, conforme prazo registrado no calendário CEUB. Verificar a atividade e eventual atualização diretamente na Sala Online. **O README documenta a Fase 1, mas não comprova a submissão/aceite.**
+
+**Links de trabalho:** [Repositório](https://github.com/Lucas-Vasques/patientsync) · [GitHub Projects](https://github.com/users/Lucas-Vasques/projects/5/views/1) (a visualização Current iteration pode ocultar itens com o filtro `iteration:@current`; abrir Prioritized backlog).
+
+### Organização enxuta
+
+- Cada integrante escolhe **uma issue** do backlog, confirma o responsável com o grupo e entrega uma mudança pequena que consiga explicar.
+- Estados: **Backlog → Ready → In progress → In review → Done**. A issue só termina após merge e teste básico.
+- O acesso ao repositório e ao GitHub Project é separado. Convidar `MasayoshiRen` e confirmar se é Matheus ou outro integrante.
+- Não gerar toda a aplicação com IA: o objetivo é aprender Django, desenvolver e demonstrar o trabalho autoral. A especificação acadêmica do professor tem restrições explícitas de uso de IA.
+
+### Git, branches e commits
+
+Depois de aceitar o convite e instalar o Git:
+
+```bash
+git clone https://github.com/Lucas-Vasques/patientsync.git
+cd patientsync
+git switch -c feat/cadastro-pacientes
+# Implemente uma mudança pequena e testável.
+git status
+git add caminho/do/arquivo1 caminho/do/arquivo2
+git commit -m "feat: implementar cadastro de pacientes"
+git push -u origin feat/cadastro-pacientes
+```
+
+Abra um **Pull Request** da sua branch para `main`. Na descrição indique a issue, o que mudou, como testar e as limitações. Outro integrante revisa antes do merge. Para nova tarefa: `git switch main`, `git pull origin main` e crie uma nova branch. Não trabalhem todos diretamente na `main`.
+
+**Mensagens úteis:** `feat:` funcionalidade; `fix:` correção; `docs:` documentação; `test:` testes; `chore:` configuração. Cada integrante deve fazer commits reais na própria conta; não criar commits artificiais.
+
+**Nunca enviar** `.env`, tokens, chaves, senhas, dados reais de pacientes ou banco com dados sensíveis. Criar `.env.example` sem valores secretos e usar dados fictícios de demonstração.
+
+### Começo da Entrega 02
+
+1. Validar a documentação e o template da Entrega 01. Criar a base Django, dependências, `.gitignore`, configurações locais e migrations. Substituir a seção **Como executar** apenas com comandos realmente testados.
+2. Implementar um fluxo mínimo: cadastrar paciente → criar agendamento → consultar, editar, remover e buscar.
+3. Criar telas simples, relatório funcional e **API REST própria** com documentação testável.
+4. Implementar uma integração externa útil (Twilio/WhatsApp prevista; verificar viabilidade de CalDAV) com tratamento de falhas/timeout e credenciais protegidas. Justificar qualquer mudança de escopo.
+5. Testar fluxos principais e API, publicar com HTTPS e coletar evidências SAST/DAST. **DAST somente no ambiente autorizado do grupo**. Cada integrante deve participar da apresentação.
+
+---
+
+## 18. Critérios de conclusão da Fase 2
+
+- [ ] Aplicação Django executável a partir das instruções reproduzíveis do README.
+- [ ] CRUD de pacientes e agendamentos, busca, validações, responsividade e relatório funcionando com dados fictícios.
+- [ ] API REST própria documentada e testável (endpoints, JSON, status HTTP e segurança pertinente).
+- [ ] Integração externa real, demonstrável, com indisponibilidade tratada.
+- [ ] Deploy público com HTTPS e segredos protegidos.
+- [ ] Testes dos fluxos críticos e API com evidências.
+- [ ] Relatórios SAST e DAST com análise, correções e revalidação no sistema autorizado.
+- [ ] URLs reais de aplicação/API e comandos testados documentados no README.
+- [ ] Contribuições individuais verificáveis; todos capazes de demonstrar e explicar a própria parte.
+
+**Nota acadêmica:** o professor proíbe usar IA generativa para produzir/reescrever a especificação do projeto. Este guia é operacional, não substitui decisões, documentação autoral ou revisão do grupo.
+
+---
+
 ## Licença
 
 Projeto desenvolvido para fins acadêmicos na disciplina de Desenvolvimento Web do CEUB.
-```
